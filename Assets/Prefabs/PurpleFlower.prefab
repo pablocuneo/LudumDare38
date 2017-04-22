@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4922106982572946}
   - component: {fileID: 212627289015728392}
   - component: {fileID: 58052891876166844}
+  - component: {fileID: 114204605960846202}
   m_Layer: 0
   m_Name: PurpleFlower
   m_TagString: Untagged
@@ -80,12 +81,24 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &114204605960846202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273306437509308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cf6a7737689435e8eaf4d85638ab96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storedPollen: 2
 --- !u!212 &212627289015728392
 SpriteRenderer:
   m_ObjectHideFlags: 1

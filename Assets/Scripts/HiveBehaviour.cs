@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HiveBehaviour : MonoBehaviour {
 
+	public PlayerBee playerBee;
+	private float pollenPerSecond = 2f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,14 +14,25 @@ public class HiveBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (playerBee != null && playerBee.IsInHive) {
+			float pollenToTake = Time.deltaTime * pollenPerSecond;
+
+			if (pollenToTake <= playerBee.pollenCollected) {
+				GameStateManager.Instance.HivePollen += pollenToTake;
+				playerBee.pollenCollected -= pollenToTake;
+			} else {
+				GameStateManager.Instance.HivePollen += playerBee.pollenCollected;
+				playerBee.pollenCollected = 0;
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collisionInfo) {
 		//Debug.LogWarning(" OnTriggerEnter2D:  " + collisionInfo.gameObject.tag);
 
 		if (collisionInfo.gameObject.tag == "Player") {
-			PlayerBee playerBee = collisionInfo.gameObject.GetComponent<PlayerBee> ();
+			playerBee = collisionInfo.gameObject.GetComponent<PlayerBee> ();
 			playerBee.IsInHive = true;
 		}
 	}
@@ -27,7 +41,7 @@ public class HiveBehaviour : MonoBehaviour {
 		//Debug.LogWarning(" OnTriggerExit2D:  " + collisionInfo.gameObject.tag);
 
 		if (collisionInfo.gameObject.tag == "Player") {
-			PlayerBee playerBee = collisionInfo.gameObject.GetComponent<PlayerBee> ();
+			playerBee = collisionInfo.gameObject.GetComponent<PlayerBee> ();
 			playerBee.IsInHive = false;
 		}
 	}

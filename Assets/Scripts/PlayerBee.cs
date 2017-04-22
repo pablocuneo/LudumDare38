@@ -8,6 +8,8 @@ public class PlayerBee : MonoBehaviour {
 	public float pollenCollected = 0f;
 	public float maxPollen = 10f;
 	public bool IsInHive = false;
+	public bool IsSlowed = false;
+	private float speed = 8f;
 
 	private float energyLostPerSecond = 3f;
 	private float energyRechargePerSecond = 20f;
@@ -24,5 +26,27 @@ public class PlayerBee : MonoBehaviour {
 		} else {
 			energy -= (Time.deltaTime * energyLostPerSecond);
 		}
+	}
+
+	void FixedUpdate()
+	{
+		float actualSpeed = IsSlowed ? (speed / 3f) : speed;
+
+		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
+
+		if (IsSlowed) {
+			rigidbody.drag = 3f;
+		} else {
+			rigidbody.drag = 0.5f;
+		}
+
+		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveVertical = Input.GetAxis ("Vertical");
+
+		//transform.Rotate (new Vector3 (0f, 0f, -moveHorizontal), Space.Self);
+
+		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+			
+		rigidbody.AddForce (movement * actualSpeed);
 	}
 }

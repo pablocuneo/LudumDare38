@@ -15,7 +15,6 @@ public class CameraFollow : MonoBehaviour {
 			Vector3	newPosition = Vector3.Lerp (transform.position, targPos, 0.1f);
 			newPosition.y = (newPosition.y < minY) ? minY : newPosition.y;
 			transform.position = newPosition;
-			//TODO: Prevent the camera from going too low (or too high)
 		}
 	}
 }

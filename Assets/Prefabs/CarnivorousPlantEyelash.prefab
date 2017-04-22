@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4485848364312380}
   - component: {fileID: 212553861201494508}
   - component: {fileID: 61639044165816612}
+  - component: {fileID: 114076039096323682}
   m_Layer: 0
   m_Name: CarnivorousPlantEyelash
   m_TagString: Untagged
@@ -96,6 +97,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.91760063, y: 0.95040226}
   m_EdgeRadius: 0
+--- !u!114 &114076039096323682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790238349172344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de2068d2f7c240eead995881a0e1eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212553861201494508
 SpriteRenderer:
   m_ObjectHideFlags: 1

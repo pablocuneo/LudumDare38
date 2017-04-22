@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4030370975791312}
   - component: {fileID: 212742863311825600}
   - component: {fileID: 58650959043433632}
+  - component: {fileID: 114061241503303440}
   m_Layer: 0
   m_Name: CarnivorousPod
   m_TagString: Untagged
@@ -86,6 +87,17 @@ CircleCollider2D:
   m_Offset: {x: 0.04, y: 0.47}
   serializedVersion: 2
   m_Radius: 0.29
+--- !u!114 &114061241503303440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873446236827466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de2068d2f7c240eead995881a0e1eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212742863311825600
 SpriteRenderer:
   m_ObjectHideFlags: 1

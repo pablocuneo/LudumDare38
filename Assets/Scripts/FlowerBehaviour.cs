@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class FlowerBehaviour : MonoBehaviour {
 
-	private float storedPollen = 2f;
+	public float storedPollen = 2f;
+	private float maxPollen = 2f;
+	private float pollenRechargePerSecond = 0.1f;
 	private float pollenPerSecond = 1f;
 
-	protected PlayerBee playerBee;
+	private PlayerBee playerBee;
 
 	void Start () {
 	}
 
 	void Update () {
-		//TODO: recover pollen slowly
+		if (storedPollen < maxPollen) {
+			float pollenToRecharge = Time.deltaTime * pollenRechargePerSecond;
 
-		//TODO: give pollen while hovering
+			if (pollenToRecharge + storedPollen > maxPollen) {
+				pollenToRecharge = maxPollen - storedPollen;
+			}
+
+			storedPollen += pollenToRecharge;
+		}
+
 		if (playerBee != null) {
 			float pollenToGive = Time.deltaTime * pollenPerSecond;
 
 			if (storedPollen >= pollenToGive) {
-				//TODO: check not to overflow bee with pollen
+				if (playerBee.pollenCollected + pollenToGive > playerBee.maxPollen) {
+					pollenToGive = playerBee.maxPollen - playerBee.pollenCollected;
+				} 
+
 				playerBee.pollenCollected += pollenToGive;
 				storedPollen -= pollenToGive;
 			}
@@ -28,7 +40,7 @@ public class FlowerBehaviour : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collisionInfo) {
-		Debug.LogWarning(" OnTriggerEnter2D:  " + collisionInfo.gameObject.tag);
+		//Debug.LogWarning(" OnTriggerEnter2D:  " + collisionInfo.gameObject.tag);
 
 		if (collisionInfo.gameObject.tag == "Player") {
 			playerBee = collisionInfo.gameObject.GetComponent<PlayerBee> ();
@@ -36,7 +48,7 @@ public class FlowerBehaviour : MonoBehaviour {
 	}
 		
 	void OnTriggerExit2D(Collider2D collisionInfo) {
-		Debug.LogWarning(" OnTriggerExit2D:  " + collisionInfo.gameObject.tag);
+		//Debug.LogWarning(" OnTriggerExit2D:  " + collisionInfo.gameObject.tag);
 
 		if (collisionInfo.gameObject.tag == "Player") {
 			playerBee = null;
