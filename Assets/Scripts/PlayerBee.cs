@@ -33,7 +33,6 @@ public class PlayerBee : MonoBehaviour {
 		float actualSpeed = IsSlowed ? (speed / 3f) : speed;
 
 		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
-
 		AudioSource audioSource =  GetComponent<AudioSource> ();
 
 		if (IsSlowed) {
@@ -44,8 +43,6 @@ public class PlayerBee : MonoBehaviour {
 
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-
-		//transform.Rotate (new Vector3 (0f, 0f, -moveHorizontal), Space.Self);
 
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 			
