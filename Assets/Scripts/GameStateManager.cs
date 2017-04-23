@@ -6,5 +6,6 @@ public class GameStateManager : UnitySingletonPersistent<GameStateManager> {
 
 	public float HivePollen = 0f;
 	public float MaxHivePollen = 30f;
+	public bool IsGamePaused = false;
 
 }

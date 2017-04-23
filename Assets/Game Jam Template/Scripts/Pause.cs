@@ -38,6 +38,8 @@ public class Pause : MonoBehaviour {
 
 	public void DoPause()
 	{
+		GameStateManager.Instance.IsGamePaused = true;
+		showPanels.HideUiOverlayCanvas ();
 		//Set isPaused to true
 		isPaused = true;
 		//Set time.timescale to 0, this will cause animations and physics to stop updating
@@ -49,6 +51,8 @@ public class Pause : MonoBehaviour {
 
 	public void UnPause()
 	{
+		GameStateManager.Instance.IsGamePaused = false;
+		showPanels.ShowUiOverlayCanvas ();
 		//Set isPaused to false
 		isPaused = false;
 		//Set time.timescale to 1, this will cause animations and physics to continue updating at regular speed

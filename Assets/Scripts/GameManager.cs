@@ -8,12 +8,16 @@ public class GameManager : MonoBehaviour {
 	public ProgressBar energyProgressBar;
 	public ProgressBar pollenProgressBar;
 	public ProgressBar hivePollenProgressBar;
+	public GameObject HivePollenDisplay;
 
-	void Start () {
+	void Awake () {
+		
+		GameStateManager.Instance.IsGamePaused = true;
+		Time.timeScale = 0;
 	}
 
 	void Update () {
-
+		Time.timeScale = (GameStateManager.Instance.IsGamePaused) ? 0 : 1;;
 
 		energyProgressBar.barProgress = playerBee.energy / 100f;
 
@@ -22,6 +26,14 @@ public class GameManager : MonoBehaviour {
 		hivePollenProgressBar.barProgress = 
 			GameStateManager.Instance.HivePollen / GameStateManager.Instance.MaxHivePollen;
 
-		//TODO: check if energy is expended and trigger game lost
+		HivePollenDisplay.SetActive (playerBee.IsInHive);
+
+		if (playerBee.energy <= 0f){
+			//TODO: trigger game lost	
+		}
+
+		if (GameStateManager.Instance.HivePollen >= GameStateManager.Instance.MaxHivePollen) {
+			//TODO: trigger game won
+		}
 	}
 }
