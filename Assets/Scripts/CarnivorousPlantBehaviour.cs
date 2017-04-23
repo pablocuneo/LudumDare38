@@ -17,12 +17,19 @@ public class CarnivorousPlantBehaviour : MonoBehaviour {
 		}
 	}
 
+	void PlayChompSound(){
+		AudioSource audioSource =  GetComponent<AudioSource> ();
+		audioSource.PlayScheduled (Time.time);
+	}
+
 	void OnTriggerEnter2D(Collider2D collisionInfo) {
 		Debug.LogWarning(" OnTriggerEnter2D:  " + collisionInfo.gameObject.tag);
 
 		if (collisionInfo.gameObject.tag == "Player") {
 			playerBee = collisionInfo.gameObject.GetComponent<PlayerBee> ();
 			playerBee.IsSlowed = true;
+
+			PlayChompSound ();
 		}
 	}
 

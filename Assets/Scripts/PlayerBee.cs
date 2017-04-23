@@ -34,6 +34,8 @@ public class PlayerBee : MonoBehaviour {
 
 		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
 
+		AudioSource audioSource =  GetComponent<AudioSource> ();
+
 		if (IsSlowed) {
 			rigidbody.drag = 3f;
 		} else {
@@ -48,5 +50,7 @@ public class PlayerBee : MonoBehaviour {
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 			
 		rigidbody.AddForce (movement * actualSpeed);
+
+		audioSource.mute = (moveHorizontal == 0f && moveVertical == 0f);
 	}
 }
